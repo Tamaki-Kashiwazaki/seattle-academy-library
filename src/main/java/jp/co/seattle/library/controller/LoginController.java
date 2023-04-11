@@ -1,6 +1,7 @@
 package jp.co.seattle.library.controller;
 
-import org.slf4j.Logger;
+import java.util.Objects;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,8 +43,14 @@ public class LoginController {
 		UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
 
 		// ユーザーが存在すればログイン、存在しなければエラー(タスク２)
-
-		
+		if (Objects.nonNull(selectedUserInfo)){
 		return "redirect:/home";
+		
+		}else {
+		model.addAttribute("errorMessage", "パスワードが一致しません。");
+		return "redirect:/login";
+		}
+		
+		
 	}
 }
