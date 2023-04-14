@@ -33,7 +33,7 @@ public class BooksService {
 
 		// TODO 書籍名の昇順で書籍情報を取得するようにSQLを修正（タスク３）
 		List<BookInfo> getedBookList = jdbcTemplate.query(
-				"",
+				"SELECT * FROM books ORDER BY title ASC",
 				new BookInfoRowMapper());
 
 		return getedBookList;
@@ -79,7 +79,7 @@ public class BooksService {
 		String sql = "";
 		jdbcTemplate.update(sql, bookId);
 	}
-
+	
 	/**
 	 * 書籍情報を更新する
 	 * 
